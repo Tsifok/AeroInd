@@ -1,9 +1,12 @@
 -Funcionalidades:
 -LogIn/Register
--Alta/Listado de componentes y stock
--Alta/Listado de productos y stock
 -Definición de fórmulas o composición de cada producto
 -Generación del proceso de producción
+
+-Alta/Listado de componentes y stock
+-Alta/Listado de productos y stock
+
+
 
 Requisitos del proceso de producción:
 El aplicativo debe poder acepar el nombre de un producto y debe analizar el stock disponible
