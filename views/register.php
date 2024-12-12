@@ -49,6 +49,7 @@
               <div class="form-group mt-3">
                 <button type="submit" class="form-control btn btn-primary rounded submit px-3" name="button submit">Registrar</button>
               </div>
+              <p id="login_error-msg" class="errormessage__form"></p>
             </form>
 
 <script src="../../js/register.js" type="text/javascript"></script>
