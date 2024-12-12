@@ -1,5 +1,3 @@
-<?php /*
-
 <!DOCTYPE html>
 <html lang="es" data-theme="light">
 
@@ -10,7 +8,7 @@
   <meta name="author" content="Viex Inc.">
 
   <link rel="icon" sizes="192x192" href="../../images/Logo Fooder icono.png">
-  <link href="../../css/style_layout1.css" rel="stylesheet">
+  <link href="../../css/style_layout.css" rel="stylesheet">
 
   <script src="https://kit.fontawesome.com/770a68900d.js" crossorigin="anonymous"></script>
 
@@ -22,37 +20,16 @@
   <!-- JQUERY -->
   <script src="../../js/jquery.min.js"></script>
 
-  <!-- SELECT2 -->
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/i18n/es.js"></script>
-  <!--<script src="../../select2-4.1.0-beta.0/dist/js/select2.full.js"></script>
-  <script src="../../select2-4.1.0-beta.0/dist/js/i18n/es.js"></script>-->
-  <!-- ALERTS/POPUPS-->
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-  <!-- IS BANNED   -->
 </head>
 
 <body>
-
-  <?php
-  // Traigo todas las funciones necesarias
-  require_once "../../includes/functions.php";
-  // Traigo el menu
-  require_once('../../includes/menu.php');
-  ?>
   <!-- Empieza el contenido especifico -->
   <div class="container ">
     <?php require_once($section . ".php") ?>
   </div>
   <!-- Termina el contenido especifico -->
 
-  <div id="scroll-up">
-    <i class="bi bi-chevron-up"></i>
-  </div>
-
-  <script src="../../js/main.js" type="text/javascript"></script>
+  
 </body>
 
 </html>

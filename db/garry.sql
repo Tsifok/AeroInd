@@ -1,15 +1,21 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-12-2024 a las 00:17:05
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.4
+-- Tiempo de generación: 12-12-2024 a las 22:57:00
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `gurbarrysa`
@@ -27,7 +33,7 @@ CREATE TABLE `chem_concentrates` (
   `name` varchar(100) NOT NULL,
   `amount` int(11) NOT NULL,
   `unit` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -41,7 +47,7 @@ CREATE TABLE `containers` (
   `label` varchar(100) NOT NULL,
   `volume` float NOT NULL,
   `amount` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -54,7 +60,7 @@ CREATE TABLE `generalcomponents` (
   `name` varchar(100) NOT NULL,
   `stock` int(11) NOT NULL,
   `unit` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `generalcomponents`
@@ -77,7 +83,7 @@ CREATE TABLE `losses` (
   `ID` int(11) NOT NULL,
   `idProduct` int(11) NOT NULL,
   `percentage` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -92,7 +98,7 @@ CREATE TABLE `orders` (
   `amound` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `finished_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -103,7 +109,7 @@ CREATE TABLE `orders` (
 CREATE TABLE `productkind` (
   `ID` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -116,7 +122,7 @@ CREATE TABLE `products` (
   `kind` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `volume` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -129,7 +135,7 @@ CREATE TABLE `pushbuttons` (
   `color` varchar(50) NOT NULL,
   `model` varchar(50) NOT NULL,
   `stock` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -140,7 +146,7 @@ CREATE TABLE `pushbuttons` (
 CREATE TABLE `rol` (
   `ID` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `rol`
@@ -158,22 +164,25 @@ INSERT INTO `rol` (`ID`, `name`) VALUES
 --
 
 CREATE TABLE `users` (
-  `ID` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `DNI` varchar(15) NOT NULL,
-  `Mail` varchar(100) NOT NULL,
+  `Email` varchar(100) NOT NULL,
   `birthDate` date NOT NULL,
-  `rol` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `rol` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `modified_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`ID`, `name`, `lastname`, `password`, `DNI`, `Mail`, `birthDate`, `rol`) VALUES
-(1, 'aa', 'aa', 'e0c9035898dd52fc65c41454cec9c4d2611bfb37', '0', 'aa@gmai.com', '2024-12-09', 3);
+INSERT INTO `users` (`id`, `name`, `lastname`, `password`, `DNI`, `Email`, `birthDate`, `rol`, `created_at`, `modified_at`, `deleted_at`) VALUES
+(1, 'aa', 'aa', 'e0c9035898dd52fc65c41454cec9c4d2611bfb37', '0', 'aa@gmail.com', '2024-12-09', 3, '2024-12-12 17:47:26', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -185,7 +194,7 @@ CREATE TABLE `valves` (
   `ID` int(11) NOT NULL,
   `volume` float NOT NULL,
   `stock` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tablas volcadas
@@ -251,9 +260,9 @@ ALTER TABLE `rol`
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`ID`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `Dni` (`DNI`),
-  ADD UNIQUE KEY `Mail` (`Mail`);
+  ADD UNIQUE KEY `Mail` (`Email`);
 
 --
 -- Indices de la tabla `valves`
@@ -323,7 +332,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `valves`
@@ -341,3 +350,7 @@ ALTER TABLE `valves`
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`productID`) REFERENCES `products` (`ID`);
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

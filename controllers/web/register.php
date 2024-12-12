@@ -1,5 +1,5 @@
 <?php
 
-$page = "Login";
-$section = "login";
+$page = "Registro";
+$section = "register";
 require_once "../../views/layout.php";
