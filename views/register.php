@@ -6,7 +6,7 @@
           <div class="login-wrap p-4 p-md-5">
             <div class="d-flex">
               <div class="w-100">
-                <h3 class="mb-4"><b>Registra a un empleado de GurbarrySA</b> </h3>
+                <h3 class="mb-4"><b>Registra a un empleado de <a href="home.php" style="color: rgb(117, 117, 117);">GurbarrySA</a></b> </h3>
               </div>              
             </div>
 
