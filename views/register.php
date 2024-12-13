@@ -2,8 +2,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-7 col-lg-6">
-        <div class="wrap">
-          <div class="img" style="background-image: url(../../images/frutas.jpg);"></div>
+        <div class="wrap">          
           <div class="login-wrap p-4 p-md-5">
             <div class="d-flex">
               <div class="w-100">
@@ -43,13 +42,13 @@
 
                 <div class="form-group">
                     <label class="form-control-placeholder" for="birhtdate">Fecha de nacimiento</label>                    
-                    <input type="date" class="form-control form" name="birhtdate" id="birhtdate" required>
+                    <input type="date" class="form-control form" name="birhtdate" id="birthdate" required>
                 </div>              
 
               <div class="form-group mt-3">
                 <button type="submit" class="form-control btn btn-primary rounded submit px-3" name="button submit">Registrar</button>
               </div>
-              <p id="login_error-msg" class="errormessage__form"></p>
+              <p id="register_error-msg" class="errormessage__form"></p>
             </form>
 
 <script src="../../js/register.js" type="text/javascript"></script>

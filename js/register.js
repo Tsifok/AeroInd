@@ -1,30 +1,40 @@
 window.addEventListener("load", () => {
     const dni = document.getElementById("dni");
-    const email = document.getElementById("email");
-    const password = document.getElementById("password-field");
+    const name = document.getElementById("name");
+    const lastname = document.getElementById("lastname");
+    const email = document.getElementById("email");    
+    const rol = document.getElementById("rol");
+    const birthdate = document.getElementById("birthdate");
+    
     const form = document.getElementById("form");
-    const msg_error = document.getElementById("login_error-msg");
+    
+    const msg_error = document.getElementById("register_error-msg");
   
     form.addEventListener("submit", (e) => {
       e.preventDefault();      
-      login(email.value, password.value);
+      register(dni.value, name.value, lastname.value, email.value, rol.value, birthdate.value);
     });
 
-function login(emailValue, passwordValue) {
+function register(dniValue, nameValue, lastnameValue, emailValue, rolValue, birthdateValue) {
     $.ajax({
-        url: "../api/users/login.php",
+        url: "../api/users/register.php",
         type: "POST",
         data: { 
-            email: emailValue, 
-            password: passwordValue 
+            dni: dniValue,
+            name: nameValue,
+            lastname: lastnameValue,
+            email: emailValue,
+            rol: rolValue,
+            birthdate: birthdateValue            
         },
-        dataType: "JSON",
+        //dataType: "JSON",
         success: function (r) {
 
             let message = []
 
             if (r.status == "success") {                          
                 console.log("Login exitoso:", r.message);
+                alert("Registro de empleado exitoso:", r.message);;
                 window.location.href = "../web/home.php";
             } else if (r.status == "error") {
                 // Manejo de errores

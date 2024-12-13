@@ -1,14 +1,15 @@
 <?php
 
 if(!isset($_SESSION['user'])){
+
+    $message = [
+        "message" => ["Error al iniciar sesión:"],
+        "status" => "error"
+    ];
+
     if (!empty($_POST)) {
     
-        require_once('../../../includes/config.php');
-
-        $message = [
-            "message" => ["Error al iniciar sesión"],
-            "status" => "error"
-        ];
+        require_once('../../../includes/config.php');        
         
         $checknum = 0;
         $checksum = 2;
@@ -51,11 +52,16 @@ if(!isset($_SESSION['user'])){
                 $message['message'] = "Error, el usuario no existe o fue eliminado";
             }
         }
-
-        header("Content-Type: application/json; charset=utf-8");
-        return print_r(json_encode($message));
-
+        
+    }else{
+        $message = [
+            "message" => ["El formulario se encuentra vacio"],
+            "status" => "error"
+        ];                
     }
 }else{
     header('location: ../web/home.php');
 }
+
+header("Content-Type: application/json; charset=utf-8");
+return print_r(json_encode($message));
