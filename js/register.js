@@ -27,15 +27,16 @@ function register(dniValue, nameValue, lastnameValue, emailValue, rolValue, birt
             rol: rolValue,
             birthdate: birthdateValue            
         },
+        timeout: 10000,
         //dataType: "JSON",
         success: function (r) {
-
+        console.log("Entro en el success");
             let message = []
 
             if (r.status == "success") {                          
-                console.log("Login exitoso:", r.message);
+                console.log("Registro de empleado exitoso:", r.message);
                 alert("Registro de empleado exitoso:", r.message);;
-                window.location.href = "../web/home.php";
+                          
             } else if (r.status == "error") {
                 // Manejo de errores
                 if (Array.isArray(r.message)) {

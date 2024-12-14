@@ -9,3 +9,21 @@ if (!$conn) {
 session_start();
 
 mysqli_set_charset($conn, "utf8");
+
+
+function sendMail($to, $message,): bool{
+  
+  $subject = "GurbarrySA";  
+  
+  // Encabezados
+  $headers = "From: No reply <no-reply@example.com>\r\n";
+  $headers .= "Reply-To: no-reply@example.com\r\n";
+  $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+
+  if (mail($to, $subject, $message, $headers)) {
+    return True;
+  } else {  
+      return False;
+  }
+
+}
