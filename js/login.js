@@ -1,7 +1,7 @@
 window.addEventListener("load", () => {
-    const email = document.getElementById("email");
-    const password = document.getElementById("password-field");
-    const form = document.getElementById("form");
+    const form = document.getElementById("login-form");
+    const email = document.getElementById("login-email");
+    const password = document.getElementById("login-password-field");    
     const msg_error = document.getElementById("login_error-msg");
   
     form.addEventListener("submit", (e) => {

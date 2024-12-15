@@ -1,12 +1,12 @@
 window.addEventListener("load", () => {
-    const dni = document.getElementById("dni");
-    const name = document.getElementById("name");
-    const lastname = document.getElementById("lastname");
-    const email = document.getElementById("email");    
-    const rol = document.getElementById("rol");
-    const birthdate = document.getElementById("birthdate");
+    const dni = document.getElementById("register-dni");
+    const name = document.getElementById("register-name");
+    const lastname = document.getElementById("register-lastname");
+    const email = document.getElementById("register-email");    
+    const rol = document.getElementById("register-rol");
+    const birthdate = document.getElementById("register-birthdate");
     
-    const form = document.getElementById("form");
+    const form = document.getElementById("register-form");
     
     const msg_error = document.getElementById("register_error-msg");
   

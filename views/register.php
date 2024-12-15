@@ -10,30 +10,30 @@
               </div>              
             </div>
 
-            <form method="post" action="" class="signup-form mt-3" id="form">
+            <form method="post" action="" class="signup-form mt-3" id="register-form">
                 <div class="form-group ">
                     <label class="form-control-placeholder" for="dni">DNI</label>  
-                    <input type="text" class="form-control" name="dni" id="dni" minlength="8" maxlength="9" required>                                
+                    <input type="text" class="form-control" name="dni" id="register-dni" minlength="8" maxlength="9" required>                                
                 </div>
                 
                 <div class="form-group">
                     <label class="form-control-placeholder" for="name">Nombre</label>
-                    <input type="text" class="form-control" name="name" id="name" maxlength="50" required>                                
+                    <input type="text" class="form-control" name="name" id="register-name" maxlength="50" required>                                
                 </div>
                 
                 <div class="form-group ">
                     <label class="form-control-placeholder" for="username">Apellido</label>
-                    <input type="text" class="form-control" name="lastname" id="lastname" maxlength="30" required>                
+                    <input type="text" class="form-control" name="lastname" id="register-lastname" maxlength="30" required>                
                 </div>
                 
                 <div class="form-group ">
                     <label class="form-control-placeholder" for="email">Email</label>
-                    <input type="text" class="form-control " name="email" id="email" required>                
+                    <input type="text" class="form-control " name="email" id="register-email" required>                
                 </div>
                 
                 <div class="form-group ">
                     <label class="form-control-placeholder" for="rol">Cargo</label>                      
-                    <select id="rol" class="form-control" required>
+                    <select name="rol" id="register-rol" class="form-control" required>
                         <option value="">Seleccione cargo</option>
                         <option value="empleado">Empleado</option>
                         <option value="gerente">Gerente</option>
@@ -42,7 +42,7 @@
 
                 <div class="form-group">
                     <label class="form-control-placeholder" for="birhtdate">Fecha de nacimiento</label>                    
-                    <input type="date" class="form-control form" name="birhtdate" id="birthdate" required>
+                    <input type="date" class="form-control form" name="birhtdate" id="register-birthdate" required>
                 </div>              
 
               <div class="form-group mt-3">

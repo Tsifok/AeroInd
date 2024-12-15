@@ -11,16 +11,16 @@
               </div>              
             </div>
 
-            <form method="POST" action="" id="form" class="signin-form mt-3">
+            <form method="POST" action="" id="login-form" class="signin-form mt-3">
               
                 <div class="form-group">
                     <label class="form-control-placeholder" for="email">Email</label>  
-                    <input type="text" id="email" class="form-control" name="email" required>                                    
+                    <input type="text" id="login-email" class="form-control" name="email" required>                                    
                 </div>
                 <div class="form-group">
                     <label class="form-control-placeholder" for="password">Contraseña</label>
                     <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                    <input id="password-field" type="password" class="form-control" name="password" required>                                                    
+                    <input id="login-password-field" type="password" class="form-control" name="password" required>                                                    
                 </div>
                 <div class="form-group mt-3">
                     <button type="submit" class="form-control btn btn-primary rounded submit px-3">Iniciar sesión</button>
