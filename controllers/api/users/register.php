@@ -8,7 +8,7 @@ $message = [
 if(!empty($_POST)) {
     require_once('../../../includes/config.php');
 
-    if($_SESSION['user']['rol'] == 2){    
+    if($_SESSION['user']['rol_id'] == 2){    
 
         $checknum = 0;
         $checksum = 9;
@@ -108,7 +108,7 @@ if(!empty($_POST)) {
             $resultMail = sendMail($email,$mailMessage);            
             if($resultMail){
                 
-                $sqlRegister = "INSERT INTO users (dni, name, lastname, password, email, rol, birthdate, created_at) 
+                $sqlRegister = "INSERT INTO users (dni, name, lastname, password, email, rol_id, birthdate, created_at) 
                 VALUES ('" . mysqli_real_escape_string($conn, $dni) . "', 
                         '" . mysqli_real_escape_string($conn, $name) . "', 
                         '" . mysqli_real_escape_string($conn, $lastname) . "', 

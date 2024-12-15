@@ -46,7 +46,7 @@
                 </div>              
 
               <div class="form-group mt-3">
-                <button type="submit" class="form-control btn btn-primary rounded submit px-3" name="button submit">Registrar</button>
+                <button type="submit" class="form-control btn btn-primary rounded submit px-3 btn-garry" name="button submit">Registrar</button>
               </div>
               <p id="register_error-msg" class="errormessage__form"></p>
             </form>
