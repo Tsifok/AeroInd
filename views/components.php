@@ -7,4 +7,9 @@
   </div>
 </div>
 
+<div id="container__specific">
+<!-- ACA ENTRA TODO LO DE COMPONENTES-->  
+</div>
+
 <script src="../../js/components/components_stock.js"></script>
+

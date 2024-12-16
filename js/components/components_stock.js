@@ -6,6 +6,7 @@ window.addEventListener("load", () => {
     fetchComponents();
     
 function fetchComponents() {
+    let code_html ="";
     $.ajax({
         url: "../../controllers/api/components.php",
         type: "POST",        
@@ -16,7 +17,120 @@ function fetchComponents() {
 
             if (r.status == "success") {                          
                 console.log("Fetch exitoso:", r.message);
-                console.log("Fetch exitoso:", r.data);
+
+                r.data.forEach(item => {
+                  //console.log(item);
+                  
+                  switch(item.comp_name){
+                    case"Envase":
+
+                    let parts = item.comp_specification.split(" ");
+                    let part1 = parts[0];
+                    let part2 = parts[1];
+
+                    code_html += `
+                    <div class="container-v3" id="container-component_`+ item.id +`">
+                      <div class="container-all" id="container-all-component_`+ item.id +`">  
+                                
+                        <div class="container__components">
+                          <div class="container__components--volume">
+                            <a>`+ item.comp_name +`</a>
+                          </div>
+                        </div>
+
+                        <div class="container__components">
+                          <div class="container__components--volume">
+                            <a>`+ part1 +`</a>
+                          </div>
+                          <div class="container__components--description">
+                            <span>`+ part2 +`</span>
+                          </div>
+                        </div>
+
+                        <div class="container__components">
+                          <div class="container__components--volume">
+                            <a>`+ item.label +`</a>
+                          </div>      
+                        </div>    
+
+                        <div class="container__components">
+                          <div class="container__components--volume">
+                            <a>stock: ${item.stock === null ? 'Sin STOCK' : item.stock +``+item.unit}</a>
+                          </div>      
+                        </div>
+
+                      </div>
+                    </div>
+                    `;
+                    break;
+
+                    case"Pulsador":
+                    code_html += `                    
+                      <div class="container-v3" id="container_`+ item.id +`">
+                        <div class="container-all" id="container_`+ item.id +`">    
+                                  
+                          <div class="container__components">
+                            <div class="container__components--volume">
+                              <a>`+ item.comp_name +`</a>
+                            </div>
+                          </div>
+
+                          <div class="container__components">
+                            <div class="container__components--volume">
+                              <a>Modelo : `+ item.comp_specification +`</a>
+                            </div>      
+                          </div>
+
+                          <div class="container__components">
+                            <div class="container__components--volume">
+                              <a>Color: `+ item.comp_color +`</a>
+                            </div>      
+                          </div>
+
+                          <div class="container__components">
+                            <div class="container__components--volume">
+                              <a>stock: ${item.stock === null ? 'Sin STOCK' : item.stock+``+item.unit}</a>
+                            </div>      
+                          </div>
+
+                        </div>
+                      </div>
+                    `;
+                    break;
+                    
+                    default:
+                      code_html += `
+                      <div class="container-v3" id="container-component_`+ item.id +`">
+                        <div class="container-all" id="container-all-component_`+ item.id +`">    
+                                  
+                          <div class="container__components">
+                            <div class="container__components--volume">
+                              <a>`+ item.comp_name +`</a>
+                            </div>
+                          </div>
+
+                          <div class="container__components">
+                            <div class="container__components--volume">
+                              <a>`+ item.comp_specification +`</a>
+                            </div>      
+                          </div>    
+
+                          <div class="container__components">
+                            <div class="container__components--volume">
+                              <a>stock: ${item.stock === null ? 'Sin STOCK' : item.stock+``+item.unit}</a>
+                            </div>      
+                          </div>
+
+                        </div>
+                      </div>
+                      `;                  
+
+                    }
+                    $("#container__specific").append(code_html);
+                    code_html = "";
+
+                });
+
                 
 // ----------------- Agregar crear tabla con html => ''
 
@@ -39,140 +153,3 @@ function fetchComponents() {
 }
 
 })
-
-/*
-
-<!-- valvulas -->
-<div class="container-v3" id="container-account_32">
-  <div class="container-all" id="container-all-account_32">           
-      
-    <div class="container__components">
-      <div class="container__components--name">
-        <a>Valvula</a>
-      </div>
-    </div>
-
-    <div class="container__components">
-      <div class="container__components--volume">
-        <a>9</a>
-      </div>
-      <div class="container__components--description">
-        <span>oz</span>
-      </div>
-    </div> 
-
-    <div class="container__components">
-      <div class="container__components--volume">
-        <a>stock : 1000 unidades</a>
-      </div>      
-    </div> 
-
-  </div>
-</div>
-<!-- pulsadores -->
-<div class="container-v3" id="container-account_32">
-  <div class="container-all" id="container-all-account_32">    
-            
-    <div class="container__components">
-      <div class="container__components--volume">
-        <a>pulsador</a>
-      </div>
-    </div>
-
-    <div class="container__components">
-      <div class="container__components--volume">
-        <a>modelo</a>
-      </div>      
-    </div>
-
-    <div class="container__components">
-      <div class="container__components--volume">
-        <a>color: rojo</a>
-      </div>      
-    </div>
-
-    <div class="container__components">
-      <div class="container__components--volume">
-        <a>stock : 1000</a>
-      </div>      
-    </div>
-
-  </div>
-</div>
-<!-- envases -->
-<div class="container-v3" id="container-account_32">
-  <div class="container-all" id="container-all-account_32">    
-            
-    <div class="container__components">
-      <div class="container__components--volume">
-        <a>Envase "desinfectante"</a>
-      </div>
-    </div>
-
-    <div class="container__components">
-      <div class="container__components--volume">
-        <a>9</a>
-      </div>
-      <div class="container__components--description">
-        <span>oz</span>
-      </div>
-    </div>
-
-    <div class="container__components">
-      <div class="container__components--volume">
-        <a>lavanda</a>
-      </div>      
-    </div>    
-
-    <div class="container__components">
-      <div class="container__components--volume">
-        <a>stock : 1000</a>
-      </div>      
-    </div>
-
-  </div>
-</div>
-<!-- Componentes quimicos -->
-<div class="container-v3" id="container-account_32">
-  <div class="container-all" id="container-all-account_32">    
-            
-    <div class="container__components">
-      <div class="container__components--volume">
-        <a>Concentrado "desinfectante"</a>
-      </div>
-    </div>
-
-    <div class="container__components">
-      <div class="container__components--volume">
-        <a>"lavanda"</a>
-      </div>      
-    </div>    
-
-    <div class="container__components">
-      <div class="container__components--volume">
-        <a>stock : 1000 ml</a>
-      </div>      
-    </div>
-
-  </div>
-</div>
-<!-- componentes generales -->
-<div class="container-v3" id="container-account_32">
-  <div class="container-all" id="container-all-account_32">    
-            
-    <div class="container__components">
-      <div class="container__components--volume">
-        <a>nombres generales</a>
-      </div>
-    </div>
-
-    <div class="container__components">
-      <div class="container__components--volume">
-        <a>stock : 1000 unit</a>
-      </div>      
-    </div>
-
-  </div>
-</div>
-
-*/

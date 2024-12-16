@@ -4,7 +4,7 @@ require_once('../../includes/config.php');
 
 if(isset($_SESSION['user'])){  
 
-    $componentsQuery = 'SELECT * FROM components_general ORDER BY comp_name';
+    $componentsQuery = 'SELECT components_general.*, components_stock.stock, components_stock.unit FROM components_general LEFT JOIN components_stock ON components_general.id = components_stock.components_id ORDER BY comp_name';
     $componentsResult = mysqli_query($conn, $componentsQuery);
     
     if ($componentsResult) {

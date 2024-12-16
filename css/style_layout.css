@@ -1554,13 +1554,3 @@ Termina clases de select2
   position: relative;
   transition: 200ms;
 }
-
-.btn-garry{
-  background-color: #ffc107;
-  border-color: #ffc107;
-}
-
-.btn-garry:hover{
-  background-color: #ffdf81;
-  border-color: #ffdf81;  
-}
