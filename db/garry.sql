@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-12-2024 a las 22:57:00
+-- Tiempo de generación: 16-12-2024 a las 05:34:40
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,60 +18,74 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `gurbarrysa`
+-- Base de datos: `garry`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `chem_concentrates`
+-- Estructura de tabla para la tabla `components_general`
 --
 
-CREATE TABLE `chem_concentrates` (
-  `ID` int(11) NOT NULL,
-  `kind` int(50) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `amount` int(11) NOT NULL,
-  `unit` varchar(15) NOT NULL
+CREATE TABLE `components_general` (
+  `id` int(11) NOT NULL,
+  `comp_name` varchar(50) NOT NULL,
+  `comp_specification` varchar(50) NOT NULL,
+  `comp_color` varchar(50) DEFAULT NULL,
+  `label` varchar(50) DEFAULT NULL,
+  `kind` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `components_general`
+--
+
+INSERT INTO `components_general` (`id`, `comp_name`, `comp_specification`, `comp_color`, `label`, `kind`) VALUES
+(1, 'Destilado', 'agua', NULL, NULL, NULL),
+(2, 'Destilado', 'Kerosene', NULL, NULL, NULL),
+(3, 'Gas', 'butano propano', NULL, NULL, NULL),
+(4, 'Válvula', '9 oz', NULL, NULL, NULL),
+(5, 'Concentrado Des. Amb', 'Floral', NULL, NULL, 'Desinfectante'),
+(6, 'Cntrdo. Insecticida ', 'mosquito', NULL, NULL, NULL),
+(7, 'Pulsador', 'BC45', 'blanco', NULL, NULL),
+(8, 'Pulsador', 'BC20', 'negro', NULL, NULL),
+(10, 'Envase', '9 oz', NULL, 'MosquiBad', 'Insecticida'),
+(11, 'Envases', '9 oz', NULL, 'Desinf. Amb. Marina', NULL),
+(12, 'Envases', '9 oz', NULL, 'Desinf. Amb. Silvestre', NULL),
+(13, 'Envases', '9 oz', NULL, 'Desinf. Amb. Floral', NULL),
+(14, 'Envases', '9 oz', NULL, 'Desinf. Amb. Pino', NULL),
+(15, 'Concentrado Des. Amb', 'Marina', NULL, NULL, 'Desinfectante'),
+(16, 'Concentrado Des. Amb', 'Silvestre', NULL, NULL, 'Desinfectante'),
+(17, 'Concentrado Des. Amb', 'Pino', NULL, NULL, 'Desinfectante');
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `containers`
+-- Estructura de tabla para la tabla `components_stock`
 --
 
-CREATE TABLE `containers` (
-  `ID` int(11) NOT NULL,
-  `kind` int(11) NOT NULL,
-  `label` varchar(100) NOT NULL,
-  `volume` float NOT NULL,
-  `amount` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `generalcomponents`
---
-
-CREATE TABLE `generalcomponents` (
-  `ID` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
+CREATE TABLE `components_stock` (
+  `id` int(11) NOT NULL,
+  `components_id` int(11) NOT NULL,
   `stock` int(11) NOT NULL,
-  `unit` varchar(10) NOT NULL
+  `unit` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `generalcomponents`
+-- Volcado de datos para la tabla `components_stock`
 --
 
-INSERT INTO `generalcomponents` (`ID`, `name`, `stock`, `unit`) VALUES
-(1, 'Bolsa', 1000, 'unidades'),
-(2, 'Bandeja', 1000, 'unidades'),
-(3, 'Destilado Kerosene', 8000, 'gr'),
-(4, 'Agua destilada', 9000, 'gr'),
-(5, 'Gas Propano Butano', 9000, 'gr');
+INSERT INTO `components_stock` (`id`, `components_id`, `stock`, `unit`) VALUES
+(1, 4, 196950, 'uni'),
+(2, 7, 196950, 'uni'),
+(3, 5, 361, 'lts'),
+(4, 11, 51000, 'uni'),
+(5, 12, 96900, 'uni'),
+(6, 13, 35700, 'uni'),
+(7, 14, 15300, 'uni'),
+(8, 15, 650, 'lts'),
+(9, 16, 979, 'lts'),
+(10, 17, 155, 'lts');
 
 -- --------------------------------------------------------
 
@@ -80,7 +94,7 @@ INSERT INTO `generalcomponents` (`ID`, `name`, `stock`, `unit`) VALUES
 --
 
 CREATE TABLE `losses` (
-  `ID` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `idProduct` int(11) NOT NULL,
   `percentage` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -92,7 +106,7 @@ CREATE TABLE `losses` (
 --
 
 CREATE TABLE `orders` (
-  `ID` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `kind` int(11) NOT NULL,
   `productID` int(11) NOT NULL,
   `amound` int(11) NOT NULL,
@@ -103,56 +117,56 @@ CREATE TABLE `orders` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `productkind`
+-- Estructura de tabla para la tabla `products`
 --
 
-CREATE TABLE `productkind` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `id_formulae` int(11) NOT NULL,
+  `name` int(11) NOT NULL,
+  `volume` int(11) NOT NULL,
+  `unit` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `products_components`
+--
+
+CREATE TABLE `products_components` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `products`
+-- Estructura de tabla para la tabla `products_stock`
 --
 
-CREATE TABLE `products` (
-  `ID` int(11) NOT NULL,
-  `kind` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `volume` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pushbuttons`
---
-
-CREATE TABLE `pushbuttons` (
-  `ID` int(11) NOT NULL,
-  `color` varchar(50) NOT NULL,
-  `model` varchar(50) NOT NULL,
+CREATE TABLE `products_stock` (
+  `id` int(11) NOT NULL,
+  `id_product` int(11) NOT NULL,
   `stock` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `rol`
+-- Estructura de tabla para la tabla `roles`
 --
 
-CREATE TABLE `rol` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `rol`
+-- Volcado de datos para la tabla `roles`
 --
 
-INSERT INTO `rol` (`ID`, `name`) VALUES
+INSERT INTO `roles` (`id`, `name`) VALUES
 (1, 'empleado'),
 (2, 'gerente'),
 (3, 'developer');
@@ -168,10 +182,10 @@ CREATE TABLE `users` (
   `name` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `DNI` varchar(15) NOT NULL,
-  `Email` varchar(100) NOT NULL,
+  `dni` varchar(15) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `birthDate` date NOT NULL,
-  `rol` int(11) NOT NULL,
+  `rol_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `modified_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -181,164 +195,116 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `lastname`, `password`, `DNI`, `Email`, `birthDate`, `rol`, `created_at`, `modified_at`, `deleted_at`) VALUES
-(1, 'aa', 'aa', 'e0c9035898dd52fc65c41454cec9c4d2611bfb37', '0', 'aa@gmail.com', '2024-12-09', 3, '2024-12-12 17:47:26', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `valves`
---
-
-CREATE TABLE `valves` (
-  `ID` int(11) NOT NULL,
-  `volume` float NOT NULL,
-  `stock` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `users` (`id`, `name`, `lastname`, `password`, `dni`, `email`, `birthDate`, `rol_id`, `created_at`, `modified_at`, `deleted_at`) VALUES
+(1, 'aa', 'aa', 'e0c9035898dd52fc65c41454cec9c4d2611bfb37', '0', 'aa@gmail.com', '2024-12-09', 3, '2024-12-12 17:47:26', NULL, NULL),
+(32, 'Matias', 'Herman', '7faf6a79ddaecfe7b65910ead089181042089d0c', '46875990', 'hermanmatias03@gmail.com', '2024-12-01', 1, '2024-12-14 00:31:59', NULL, NULL);
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `chem_concentrates`
+-- Indices de la tabla `components_general`
 --
-ALTER TABLE `chem_concentrates`
-  ADD PRIMARY KEY (`ID`);
+ALTER TABLE `components_general`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `containers`
+-- Indices de la tabla `components_stock`
 --
-ALTER TABLE `containers`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indices de la tabla `generalcomponents`
---
-ALTER TABLE `generalcomponents`
-  ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `Name` (`name`);
+ALTER TABLE `components_stock`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `losses`
 --
 ALTER TABLE `losses`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`ID`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `ProductID` (`productID`);
-
---
--- Indices de la tabla `productkind`
---
-ALTER TABLE `productkind`
-  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indices de la tabla `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `pushbuttons`
+-- Indices de la tabla `products_components`
 --
-ALTER TABLE `pushbuttons`
-  ADD PRIMARY KEY (`ID`);
+ALTER TABLE `products_components`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `rol`
+-- Indices de la tabla `roles`
 --
-ALTER TABLE `rol`
-  ADD PRIMARY KEY (`ID`);
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `Dni` (`DNI`),
-  ADD UNIQUE KEY `Mail` (`Email`);
-
---
--- Indices de la tabla `valves`
---
-ALTER TABLE `valves`
-  ADD PRIMARY KEY (`ID`);
+  ADD UNIQUE KEY `Dni` (`dni`),
+  ADD UNIQUE KEY `Mail` (`email`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `chem_concentrates`
+-- AUTO_INCREMENT de la tabla `components_general`
 --
-ALTER TABLE `chem_concentrates`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `components_general`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT de la tabla `containers`
+-- AUTO_INCREMENT de la tabla `components_stock`
 --
-ALTER TABLE `containers`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `generalcomponents`
---
-ALTER TABLE `generalcomponents`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `components_stock`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `losses`
 --
 ALTER TABLE `losses`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `productkind`
---
-ALTER TABLE `productkind`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `pushbuttons`
+-- AUTO_INCREMENT de la tabla `products_components`
 --
-ALTER TABLE `pushbuttons`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `products_components`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `rol`
+-- AUTO_INCREMENT de la tabla `roles`
 --
-ALTER TABLE `rol`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `valves`
---
-ALTER TABLE `valves`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Restricciones para tablas volcadas
@@ -348,7 +314,7 @@ ALTER TABLE `valves`
 -- Filtros para la tabla `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`productID`) REFERENCES `products` (`ID`);
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`productID`) REFERENCES `products_formulae` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
