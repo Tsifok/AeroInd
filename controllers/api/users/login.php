@@ -9,7 +9,7 @@ if(!isset($_SESSION['user'])){
 
     if (!empty($_POST)) {
     
-        require_once('../../../includes/config.php');        
+        require_once('../../../includes/config.php');
         
         $checknum = 0;
         $checksum = 2;

@@ -787,21 +787,23 @@ button[aria-pressed="false"]:hover {
   opacity: 1;
 }
 
-.container__userdata {
+.container__components {
+  margin-right: 20px;
   display: flex;
   flex-direction: column;
 }
 
-.container__userdata--username {
+.container__components--volume {
   font-weight: 500;
   line-height: 1.5rem;
 }
 
-.container__userdata--username:hover {
-  text-decoration: underline;
+.container__components--name{
+  font-weight: 500;
+  line-height: 1.5rem;
 }
 
-.container__userdata--description {
+.container__components--unit {
   color: grey;
   font-size: 14px;
   line-height: 1.15rem;
@@ -812,7 +814,7 @@ button[aria-pressed="false"]:hover {
   overflow: hidden;
 }
 
-/*.container__userdata--follow {
+/*.container__components--follow {
   margin-left: auto;  
 }*/
 

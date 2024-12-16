@@ -5,6 +5,10 @@ $message = [
     "status" => "error"
 ];
 
+if(!isset($_SESSION['user'])){
+    header('location: ../web/home.php');
+}
+
 if(!empty($_POST)) {
     require_once('../../../includes/config.php');
 
