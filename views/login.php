@@ -11,8 +11,8 @@
               </div>              
             </div>
 
-            <form method="POST" action="" id="login-form" class="signin-form mt-3">
-              
+            <form method="POST" action="" id="login-form" class="signin-form mt-3">          
+
                 <div class="form-group">
                     <label class="form-control-placeholder" for="email">Email</label>  
                     <input type="text" id="login-email" class="form-control" name="email" required>                                    
@@ -31,6 +31,7 @@
                     </div>
                 </div>
                 <p id="login_error-msg" class="errormessage__form"></p>
+                
             </form>   
 
           </div>
