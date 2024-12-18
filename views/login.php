@@ -23,13 +23,8 @@
                     <input id="login-password-field" type="password" class="form-control" name="password" required>                                                    
                 </div>
                 <div class="form-group mt-3">
-                    <button type="submit" class="form-control btn btn-primary rounded submit px-3 btn-garry">Iniciar sesión</button>
-                </div>
-                <div class="form-group d-md-flex">                
-                    <div class="w-100 mt-1 text-md-center">
-                    <a class="links2" href="../web/forgot_password.php">¿Olvidaste tu contraseña?</a>
-                    </div>
-                </div>
+                    <button type="submit" class="form-control btn btn-primary rounded submit px-3">Iniciar sesión</button>
+                </div>                
                 <p id="login_error-msg" class="errormessage__form"></p>
                 
             </form>   

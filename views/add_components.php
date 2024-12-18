@@ -7,8 +7,6 @@
   </div>
 </div>
 
-pulsador
-
 <div id="container__specific--add_components">
     <section>
         <form method="POST" action="" id="add_comp_form" class="signin-form mt-3">

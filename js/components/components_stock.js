@@ -1,9 +1,7 @@
 window.addEventListener("load", () => {
-    const btn_stock = document.getElementById("btn-components-stock");
-    const btn_add = document.getElementById("btn-components-add");
-    const btn_order = document.getElementById("btn-components-order");
-    
     fetchComponents();
+    
+})
     
 function fetchComponents() {
     let code_html ="";
@@ -59,6 +57,10 @@ function fetchComponents() {
                           </div>      
                         </div>
 
+                        <div id="div-add_order" class="form-group mt-3 div-add_order">
+                          <button id="btn-add_order-`+ item.id +`" class="btn btn-primary rounded add-order-btn">Agregar orden</button>
+                        </div>
+
                       </div>
                     </div>
                     `;
@@ -93,6 +95,10 @@ function fetchComponents() {
                             </div>      
                           </div>
 
+                          <div id="div-add_order" class="form-group mt-3 div-add_order">
+                            <button id="btn-add_order-`+ item.id +`" class="btn btn-primary rounded add-order-btn">Agregar orden</button>
+                          </div>
+
                         </div>
                       </div>
                     `;
@@ -120,6 +126,9 @@ function fetchComponents() {
                               <a>stock: ${item.stock === null ? 'Sin STOCK' : item.stock+``+item.unit}</a>
                             </div>      
                           </div>
+                              <div id="div-add_order" class="form-group mt-3 div-add_order">
+                                <button id="btn-add_order-`+ item.id +`" class="btn btn-primary rounded add-order-btn">Agregar orden</button>
+                              </div>
 
                         </div>
                       </div>
@@ -130,9 +139,12 @@ function fetchComponents() {
                     code_html = "";
 
                 });
-
                 
-// ----------------- Agregar crear tabla con html => ''
+                //agrego el onclik para que tome cuando se preciona el btn addordercomponents
+                $(".add-order-btn").on("click", function() {
+                  addOrderComponents(this.id);
+                });
+
 
             } else if (r.status == "error") {
                 // Manejo de errores
@@ -152,4 +164,42 @@ function fetchComponents() {
     });
 }
 
-})
+function addOrderComponents(buttonId) {
+  cleanId = buttonId.split("-");
+  cleanIdNum = cleanId[2];
+  const flag = 1;
+
+  
+  $.ajax({
+    url: "../../controllers/api/order_components.php",
+    type: "POST",
+    data: { 
+        flag: flag, 
+        comp_order_id: cleanIdNum 
+    },
+    dataType: "JSON",
+    success: function (r) {
+
+        let message = []
+
+        if (r.status == "success") {                          
+            console.log("Agregado exitosamente:", r.message);
+            alert("agregado exitosamente");
+        } else if (r.status == "error") {
+            // Manejo de errores
+            if (Array.isArray(r.message)) {
+                // Si 'r.message' es un array
+                message.push(...r.message);
+            } else {
+                // Si 'r.message' es un solo mensaje
+                message.push(r.message);
+            }
+        }
+        // Mandar mnsj de error al user
+        if(message.length > 0){                        
+            console.log(message);
+        }
+    }
+  });    
+  
+}

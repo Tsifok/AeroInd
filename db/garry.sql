@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-12-2024 a las 05:34:40
+-- Tiempo de generación: 17-12-2024 a las 03:30:48
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -46,17 +46,24 @@ INSERT INTO `components_general` (`id`, `comp_name`, `comp_specification`, `comp
 (3, 'Gas', 'butano propano', NULL, NULL, NULL),
 (4, 'Válvula', '9 oz', NULL, NULL, NULL),
 (5, 'Concentrado Des. Amb', 'Floral', NULL, NULL, 'Desinfectante'),
-(6, 'Cntrdo. Insecticida ', 'mosquito', NULL, NULL, NULL),
+(6, 'Concentrado Insect', 'mosquito', NULL, NULL, 'Insecticida'),
 (7, 'Pulsador', 'BC45', 'blanco', NULL, NULL),
 (8, 'Pulsador', 'BC20', 'negro', NULL, NULL),
-(10, 'Envase', '9 oz', NULL, 'MosquiBad', 'Insecticida'),
-(11, 'Envases', '9 oz', NULL, 'Desinf. Amb. Marina', NULL),
-(12, 'Envases', '9 oz', NULL, 'Desinf. Amb. Silvestre', NULL),
-(13, 'Envases', '9 oz', NULL, 'Desinf. Amb. Floral', NULL),
-(14, 'Envases', '9 oz', NULL, 'Desinf. Amb. Pino', NULL),
+(10, 'Envase', '9 oz', NULL, 'MosquiBad', NULL),
+(11, 'Envase', '9 oz', NULL, 'Desinf. Amb. Marina', NULL),
+(12, 'Envase', '9 oz', NULL, 'Desinf. Amb. Silvestre', NULL),
+(13, 'Envase', '9 oz', NULL, 'Desinf. Amb. Floral', NULL),
+(14, 'Envase', '9 oz', NULL, 'Desinf. Amb. Pino', NULL),
 (15, 'Concentrado Des. Amb', 'Marina', NULL, NULL, 'Desinfectante'),
 (16, 'Concentrado Des. Amb', 'Silvestre', NULL, NULL, 'Desinfectante'),
-(17, 'Concentrado Des. Amb', 'Pino', NULL, NULL, 'Desinfectante');
+(17, 'Concentrado Des. Amb', 'Pino', NULL, NULL, 'Desinfectante'),
+(18, 'Envase', '12 oz', NULL, 'Desinf. Amb. Mr Musculo', NULL),
+(19, 'Pulsador', 'BD69', 'Blanco', NULL, NULL),
+(20, 'Válvula', '12 oz', NULL, NULL, NULL),
+(21, 'Concentrado Incecticida', 'para mosquitos', NULL, NULL, 'Incecticida'),
+(22, 'Envase', '12 oz', NULL, 'Desinf. Amb. Fuelte', NULL),
+(23, 'Jabon espuma', 'Gas', NULL, NULL, NULL),
+(24, 'test reset form', 'test reset form', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -107,10 +114,10 @@ CREATE TABLE `losses` (
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `kind` int(11) NOT NULL,
   `productID` int(11) NOT NULL,
   `amound` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `sent_at` datetime NOT NULL,
   `finished_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -262,7 +269,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `components_general`
 --
 ALTER TABLE `components_general`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `components_stock`
